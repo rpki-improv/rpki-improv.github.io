@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>DMARC Study - Measurement</title>
+    <base href="https://dmarcstudy.github.io/">
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700" rel="stylesheet">
+
+
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="./css/noscript.css">
+    </noscript>
+</head>
+<body class="container">
+<nav class="container-fluid navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar">&nbsp;</span>
+            <span class="icon-bar">&nbsp;</span>
+            <span class="icon-bar">&nbsp;</span>
+        </button>
+        <a class="navbar-brand" href="#">DMARC Study</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="abstract">Abstract</a></li>
+            <li><a href="measurement">Server-side Measurement</a></li>
+            <li><a href="survey">Survey</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        </ul>
+    </div>
+</nav>
+
+<main class="container-fluid">
+    <h1 id="how-to-reproduce-all-of-the-figures-on-the-paper-section-3">How to reproduce all of the figures on the
+        paper? (Section 3)?</h1>
+    <p>Our paper is based on the measurement: DMARC and TLS-RPT records.
+        We had collected them over 1 year. Due to the massive size of these datasets, we used
+        <a href="https://spark.apache.org/">Apache Spark</a> to process them in a parallel manner. Here, we would like
+        to provide two approaches to reproduce our measurement results:</p>
+    <ul>
+<!--        <li>-->
+<!--            <p>First, you can (1) use the <a href="#">zdns</a> module to crawl DMARC, MX records-->
+<!--                , and gather your own dataset, (2) analyze the raw-->
+<!--                datasets you have obtained, and (3) run our plotting scripts. As the dataset will not be exactly as same-->
+<!--                as the ones we used the paper, you might need to tweak the analysis codes a bit and your figures might-->
+<!--                look different . Thus, we recommend this approach for-->
+<!--                the researchers who are interested in extending our work. <em>For the ones who are interested in this-->
+<!--                    approach, you can start this from the Section 3 (, 2, and 1 in a reverse order).</em></p>-->
+<!--        </li>-->
+        <li>
+            <p>First, you can (1) download our raw datasets (not re-running the measurement), (2)
+                run our analysis scripts (you have to update paths accordingly), and (3) run our plotting scripts. Our dataset
+                might be too big to run as it spans more than a year. Thus,
+                depending on your computational resource, it may take several hours (or days) to run our
+                scripts. For your information, we used Spark clusters to efficiently analyze the datasets. <em>For the
+                    ones who are interested in this approach, you can start this page from
+                    Section 2 and then follow Section 1.</em></p>
+        </li>
+        <li>
+            <p>Second, you can (1) just use our analytics datasets, which are processed through our analysis codes
+                based on the raw datasets. We believe this way to be the fastest way that you can check the consistency
+                of the figures on the paper. <em>For the ones who are interested in this approach, you only need to read
+                    Section 1.</em></p>
+        </li>
+    </ul>
+    <p>You can also gather your own dataset by using the <a href="#">zdns</a> module to crawl DMARC, MX records. In this case,
+        as the dataset will not be exactly as same
+                as the ones we used in the paper, you might need to tweak the analysis codes a bit and your figures will
+                look different . Thus, we recommend this approach only for
+                the researchers who are interested in extending our work.</p>
+    <h1 id="1-reproducing-the-figures-from-the-analytics">1. Reproducing the figures from the analytics</h1>
+    <p>This section introduces a very simple way to reproduce all of the figures in the paper by using the analytics
+        datasets and plotting scripts.</p>
+    <h2 id="datasets-and-scripts">Datasets and scripts</h2>
+    <h3 id="1-analytic-datasets-for-figures-and-their-gnuplot-scripts">(1) Analytic datasets for figures and their
+        gnuplot scripts</h3>
+
+
+    <table class="table table-dark table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Download</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>data.zip</code></td>
+            <td><a href="/security2023/data.zip">link</a></td>
+            <td>Input datasets for the figures.</td>
+        </tr>
+        <tr>
+            <td><code>plotting-scripts.zip</code></td>
+            <td><a href="/security2023/plotting_scripts.zip">link</a></td>
+            <td>Plotting scripts for the figures.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <style>
+        table, th, td {
+            text-align: center;
+        }
+    </style>
+
+    <h3 id="2-details-of-the-gnuplot-scripts">(2) Details of the gnuplot scripts</h3>
+
+
+    <table class="table table-dark table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Figure No. on the paper</th>
+            <th>Input data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>dmarc-deployment.plot</code></td>
+            <td>Figure 2</td>
+            <td><code>dmarc-deployment-with-tld-mx.csv</code></td>
+        </tr>
+        <tr>
+            <td><code>cdf-report-centrality.plot</code></td>
+            <td>Figure 3</td>
+            <td><code>cdf-report-centrality.txt</code></td>
+        </tr>
+        <tr>
+            <td><code>alexa-1m-dmarc-deployment.plot</code></td>
+            <td>Figure 4</td>
+            <td><code>top-1m-result.txt</code></td>
+        </tr>
+        <tr>
+            <td><code>alexa-1m-dmarc-incorrect.plot</code></td>
+            <td>Figure 5</td>
+            <td><code>top-1m-result.txt</code></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <style>
+        table, th, td {
+            text-align: center;
+        }
+    </style>
+
+    <h1 id="2-reproducing-the-analytics-from-the-raw-datasets-our-measurement-datasets">2. Reproducing the analytics
+        from the raw datasets (our measurement datasets)</h1>
+    <p>This section introduces a way to generate the datasets (in the <code>Analytics</code> file) from the raw datasets
+        that we had collected using our measurement codes. Note that due to huge size of these scans, only latest ones have been made
+    available here. Please contact us if you would like all the scans.
+        After executing the analysis scripts you may use those output files as inputs to the above plotting scripts.</p>
+    <h2 id="datasets-and-scripts-1">Datasets and scripts</h2>
+    <h3 id="1-raw-measurement-datasets-and-prerequisites-for-the-analysis">(1) Raw (measurement) datasets and
+        prerequisites for the analysis.</h3>
+
+
+    <table class="table table-dark table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Download</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>Weekly DMARC Scan</code></td>
+            <td><a href="https://dmarcstudy-dataset.s3.us-east-2.amazonaws.com/DMARC">link</a></td>
+            <td>Contains DMARC records of all the domains under <code>com</code>, <code>net</code>, <code>org</code>, and
+                <code>se</code> zone. Captured at January 8th, 2023.
+            </td>
+        </tr>
+        <tr>
+            <td><code>Weekly MX Scan</code></td>
+            <td><a href="https://dmarcstudy-dataset.s3.us-east-2.amazonaws.com/dns.zip">link</a></td>
+            <td>Contains MX records of all the domains under <code>com</code>, <code>net</code>, <code>org</code>, and
+                <code>se</code> zone. Captured at January 6th, 2023.
+            </td>
+        </tr>
+        <tr>
+            <td><code>Alexa Top 1M</code></td>
+            <td><a href="https://toplists.net.in.tum.de/archive/">link</a></td>
+            <td>Alexa 1M domain names captured at October 31st, 2019. This dataset is obtained from the <a
+                    href="https://toplists.github.io">top-lists study</a>.
+            </td>
+        </tr>
+<!--        <tr>-->
+<!--            <td><code>Intermediary data</code></td>-->
+<!--            <td><a href="#">link</a></td>-->
+<!--            <td>Intermediary datasets which are outputs of Spark scripts and also can be used as an input for analysis-->
+<!--                scripts.-->
+<!--            </td>-->
+<!--        </tr>-->
+        </tbody>
+    </table>
+
+    <style>
+        table, th, td {
+            text-align: center;
+        }
+    </style>
+
+    <h3 id="2-scripts-for-the-analysis">(2) Scripts for the analysis</h3>
+
+
+    <table class="table table-dark table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Download</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+<!--        <tr>-->
+<!--            <td><code>dependencies</code></td>-->
+<!--            <td><a href="#">link</a></td>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+        <tr>
+            <td><code>fig2.py</code></td>
+            <td><a href="/security2023/codes/fig2.py">link</a></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><code>fig3.py</code></td>
+            <td><a href="/security2023/codes/fig3.py">link</a></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><code>fig4-5.py</code></td>
+            <td><a href="/security2023/codes/fig4-5.py">link</a></td>
+            <td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <style>
+        table, th, td {
+            text-align: center;
+        }
+    </style>
+
+    <h2 id="how-to-use-the-datasets-and-scripts">How to use the datasets and scripts?</h2>
+    <p>We had collected two raw datasets: MX records and DMARC records for each domain in the .com, .net, .org, and .se zone.
+        Dataset for MX record also contain NS record for the same set of domains.
+        After downloading them, you can run each of the given codes and generate data for the associated figures. It should be noted
+    that the scripts assume you will keep your data in the HDFS cluster and use Apache Spark that can read from the cluster.
+<!--    <p>The below table shows which Spark, analysis, and gnuplot scripts are used to get results in the paper.</p>-->
+
+<!--    <h1 id="section3">3. Running our measurement codes to get your own raw datasets</h1>-->
+
+
+<!--    <table class="table table-dark table-striped table-bordered">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Filename</th>-->
+<!--            <th>Descrption</th>-->
+<!--            <th>Download</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <td><code>email-sender-auth.py</code></td>-->
+<!--            <td>It fetches TLSA records from a list of domains.</td>-->
+<!--            <td><a href="/codes/tlsa-scan.go">link</a><sup>1</sup></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><code>dns-crawl.py</code></td>-->
+<!--            <td>It collects certificates via STARTTLS.</td>-->
+<!--            <td><a href="/codes/starttls-scan.go">link</a></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <style>-->
+<!--        table, th, td {-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--    </style>-->
+</main>
+<noscript>
+    <div class="alert alert-warning" role="alert">
+        <strong>JavaScript disabled!</strong> This page requires JavaScript, you might not be able to access all content
+        with JavaScript disabled.
+    </div>
+</noscript>
+
+<footer class="container-fluid page-footer" style="display: flex; align-items: center">
+</footer>
+
+
+<script type="text/javascript">
+    var sc_project = 11603023;
+    var sc_invisible = 1;
+    var sc_security = "a906280a";
+    var scJsHost = (("https:" == document.location.protocol) ?
+        "https://secure." : "http://www.");
+    document.write("<sc" + "ript type='text/javascript' src='" +
+        scJsHost +
+        "statcounter.com/counter/counter.js'></" + "script>");
+</script>
+<noscript>
+    <div class="statcounter"><a title="Web Analytics"
+                                href="http://statcounter.com/" target="_blank"><img
+            class="statcounter"
+            src="//c.statcounter.com/11603023/0/a906280a/1/" alt="Web
+Analytics"></a></div>
+</noscript>
+
+
+<script src="js/jquery.1.12.4.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

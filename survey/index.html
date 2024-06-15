@@ -1,0 +1,4035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>DMARC Study - Survey</title>
+    <base href="https://dmarcstudy.github.io/">
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700" rel="stylesheet">
+
+    <style>
+        table.table-bordered {
+            border: 1px solid black !important;
+            margin-top: 20px;
+            white-space: nowrap;
+        }
+
+        table.table-bordered > thead > tr > th {
+            border: 1px solid black !important;
+        }
+
+        table.table-bordered > tbody > tr > td {
+            border: 1px solid black !important;
+        }
+        table, th, td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="./css/noscript.css">
+    </noscript>
+</head>
+<body class="container">
+<nav class="container-fluid navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar">&nbsp;</span>
+            <span class="icon-bar">&nbsp;</span>
+            <span class="icon-bar">&nbsp;</span>
+        </button>
+        <a class="navbar-brand" href="#">DMARC Study</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="abstract">Abstract</a></li>
+            <li><a href="measurement">Server-side Measurement</a></li>
+            <li><a href="survey">Survey</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        </ul>
+    </div>
+</nav>
+
+<main class="container-fluid">
+    <script>
+        var clicky_site_ids = clicky_site_ids || [];
+        clicky_site_ids.push(101238267);
+    </script>
+    <style>
+        /*#survey tr td:nth-child(7), #survey th:nth-child(7) {*/
+        /*    display: none;*/
+        /*}*/
+        /*#survey tr td:nth-child(8), #survey th:nth-child(8) {*/
+        /*    display: none;*/
+        /*}*/
+        /*#survey tr td:nth-child(9), #survey th:nth-child(8) {*/
+        /*    display: none;*/
+        /*}*/
+        /*#survey tr td:nth-child(10), #survey th:nth-child(8) {*/
+        /*    display: none;*/
+        /*}*/
+    </style>
+    <script async src="//static.getclicky.com/js"></script>
+    <table id="survey" class="table table-dark table-striped table-fit table-bordered table-hover table-condensed">
+        <thead>
+        <tr>
+            <th title="Field #1">Start Date</th>
+            <th title="Field #2">End Date</th>
+            <th title="Field #3">I consent voluntarily to be a participant in this study and <br>understand that
+            I can refuse to answer questions and <br>I can withdraw from the study at any time, without having to give a
+                reason.</th>
+            <th title="Field #4">I understand that information I provide will be <br>used for scientific reports and
+                publications.
+            </th>
+            <th title="Field #5" colspan="2">What is the name of your email server software? <br>Or, what is the name of your MTA?</th>
+            <th title="Field #7" colspan="2">Are you using any framework, setup tool, <br>or how to for your mail server?</th>
+            <th title="Field #9" colspan="2">How many email accounts do exist <br>under your operated infrastructure?</th>
+            <th title="Field #11" colspan="2">How many emails does your system <br>receive on average per day?</th>
+            <th title="Field #13">Do you frequently update your MTA or <br>associated plugins and mail filters? <br>By update,
+                we mean following the releases for the associated <br>software and installing them regularly.
+            </th>
+            <th title="Field #14">If yes, approximately when did you last update <br>your MTA or any of the plugins and mail
+                filters?
+            </th>
+            <th title="Field #15" colspan="9">What security email protocols do you use?</th>
+            <th title="Field #24">Does your SMTP server support DMARC reporting? <br>In other words, when you receive an
+                email from a sender domain <br>that specified its intention to receive aggregate or/and failure reports <br>via
+                its DMARC setting, do you send aggregate or/and forensic reports to the specified addresses?
+            </th>
+            <th title="Field #25">Do you use your own reporting setup or <br>have you delegated the reporting setup to a
+                third-party provider?
+            </th>
+            <th title="Field #26" colspan="2">Which DMARC reporting software are you using?</th>
+            <th title="Field #28">Does your DMARC reporting software respect the <br>reporting interval (RI tag) set by the
+                sender domain?
+            </th>
+            <th title="Field #29">Does your DMARC reporting software follow the <br>Failure Reporting Options (FO tag) set
+                by the sender domain?
+            </th>
+            <th title="Field #30">Does your DMARC reporting software perform an <br>external destination verification if an
+                external domain is present <br>in the RUA/ RUF tag of the sender’s DMARC setting?
+            </th>
+            <th title="Field #31">What is the maximum number of mailto RUA <br>tags your email server supports? <br>To put it in
+                another way, if a sending domain has &quot;n&quot; <br>mailto RUA tags in its DMARC TXT record, does your
+                server <br>send a DMARC report to all those &quot;n&quot; addresses <br>or it only sends a report to the first
+                few addresses? <br>Please write the maximum value of &quot;n&quot; <br>that your server supports.
+            </th>
+            <th title="Field #32">What is the maximum number of mailto RUF <br>tags your email server supports? <br>To put it in
+                another way, if a sending domain has &quot;n&quot; <br>mailto RUF tags in its DMARC TXT record, does your
+                server <br>send a DMARC report to all those &quot;n&quot; addresses <br>or it only sends a report to the first
+                few addresses? <br>Please write the maximum value of &quot;n&quot; <br>that your server supports.
+            </th>
+            <th title="Field #33">Does your SMTP server support TLS-RPT reporting? <br>In other words, in case there is a
+                failure of email delivery to another <br>SMTP server and the recipient domain owner specified their
+                intention to receive <br>failure reports via the SMTP TLS DNS record, do you send <br>reports to the specified
+                addresses?
+            </th>
+            <th title="Field #34">Do you use your own reporting setup or <br>have you delegated the reporting setup to a
+                third-party provider?
+            </th>
+            <th title="Field #35" colspan="2">Which TLS-RPT reporting software are you using?</th>
+            <th title="Field #37" width="100">Does your TLS-RPT reporting software perform an <br>external destination verification if
+                an external domain is present in the <br>RUA tag of the sender’s TLS-RPT setting?
+            </th>
+            <th title="Field #38">What is the maximum number of mailto RUA <br>tags your email server supports? <br>To put it in
+                another way, if a recipient domain has &quot;n&quot; mailto <br>RUA tags in its TLS-RPT DNS record, does
+                your server send a <br>TLS-RPT report to all those &quot;n&quot; addresses or it only sends a report to the
+                <br>first few addresses? Please write the maximum value of &quot;n&quot; <br>that your server supports.
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Date / Time</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td>BIMI</td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Open-Ended Response</td>
+            <td>Open-Ended Response</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Response</td>
+            <td>Other (please specify)</td>
+            <td>Response</td>
+            <td>Open-Ended Response</td>
+        </tr>
+        <tr>
+            <td>2022-12-11 17:57</td>
+            <td>2022-12-11 17:58</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-12-11 12:19</td>
+            <td>2022-12-11 12:19</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-12-07 17:37</td>
+            <td>2022-12-07 17:39</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/10/2022</td>
+            <td>SPF</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-12-07 09:50</td>
+            <td>2022-12-07 09:54</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>21/07/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-12-05 08:47</td>
+            <td>2022-12-05 08:50</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-12-03 14:25</td>
+            <td>2022-12-03 14:28</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-30 22:29</td>
+            <td>2022-11-30 22:41</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Sendmail</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>24 years of experience as a postmaster</td>
+            <td>Other (please specify)</td>
+            <td>A handful of accounts with hundreds of email addresses</td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>OpenDMARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Don&#39;t Know</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-30 05:01</td>
+            <td>2022-11-30 05:06</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Exchange, Postfix, Axigen</td>
+            <td>Other (please specify)</td>
+            <td>VimbAdmin, Exchange ECP, Axigen</td>
+            <td>Other (please specify)</td>
+            <td>9000</td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Rarely</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-29 10:03</td>
+            <td>2022-11-29 10:12</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Google WorkSuite aka &quot;gmail&quot;</td>
+            <td>Other (please specify)</td>
+            <td>Google hosted</td>
+            <td>10 ~ 50</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Never</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td>BIMI</td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>dmarcian&#39;s own commercial solution</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>At least 3; unknown maximum</td>
+            <td>At least 3; unknown maximum</td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>Google&#39;s own reporting</td>
+            <td>Yes</td>
+            <td>at least 3</td>
+        </tr>
+        <tr>
+            <td>2022-11-29 08:33</td>
+            <td>2022-11-29 08:34</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-28 14:44</td>
+            <td>2022-11-28 14:50</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-27 18:02</td>
+            <td>2022-11-27 18:05</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Mailcow</td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>&lt; 10</td>
+            <td></td>
+            <td>Always</td>
+            <td>26/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Third-party</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-25 22:08</td>
+            <td>2022-11-25 22:12</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Custom Java app</td>
+            <td>Other (please specify)</td>
+            <td>Other</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>custom</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>1</td>
+            <td>1</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-25 06:42</td>
+            <td>2022-11-25 06:49</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-25 04:44</td>
+            <td>2022-11-25 04:44</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-24 09:16</td>
+            <td>2022-11-24 09:20</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>modoboa</td>
+            <td>10 ~ 50</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td>BIMI</td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-24 07:21</td>
+            <td>2022-11-24 07:23</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exchange</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>100 ~ 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 12:53</td>
+            <td>2022-11-23 12:54</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 12:34</td>
+            <td>2022-11-23 12:53</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>Ispconfig</td>
+            <td>100 ~ 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>20/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 11:36</td>
+            <td>2022-11-23 11:45</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Sendmail</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Rarely</td>
+            <td></td>
+            <td>SPF</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 08:23</td>
+            <td>2022-11-23 08:24</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 07:50</td>
+            <td>2022-11-23 07:50</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 06:54</td>
+            <td>2022-11-23 06:57</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Haraka</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>Proprietary</td>
+            <td>Other (please specify)</td>
+            <td>~500000</td>
+            <td>Other (please specify)</td>
+            <td>~10000000</td>
+            <td>Often</td>
+            <td>23/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td>BIMI</td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>Proprietary</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>5</td>
+            <td>5</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 06:33</td>
+            <td>2022-11-23 06:33</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 06:03</td>
+            <td>2022-11-23 06:09</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>OpenDMARC</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 05:20</td>
+            <td>2022-11-23 05:22</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>Sophos UTM</td>
+            <td>100 ~ 500</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 04:51</td>
+            <td>2022-11-23 04:55</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No framework</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>01/01/2020</td>
+            <td>SPF</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 04:26</td>
+            <td>2022-11-23 04:31</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>Puppet</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>22/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-23 02:13</td>
+            <td>2022-11-23 02:16</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>Homemade</td>
+            <td></td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Always</td>
+            <td>22/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 19:37</td>
+            <td>2022-11-22 19:39</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>01/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 18:57</td>
+            <td>2022-11-22 19:22</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 05:15</td>
+            <td>2022-11-22 17:14</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>50 ~ 100</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>21/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 17:06</td>
+            <td>2022-11-22 17:11</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>supplied documentation</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>30/09/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 15:30</td>
+            <td>2022-11-22 15:31</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 15:16</td>
+            <td>2022-11-22 15:16</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 14:11</td>
+            <td>2022-11-22 14:12</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 13:31</td>
+            <td>2022-11-22 13:36</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Mail-in-a-Box</td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Always</td>
+            <td>01/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 13:27</td>
+            <td>2022-11-22 13:27</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 13:20</td>
+            <td>2022-11-22 13:27</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Sendmail</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>22/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>OpenDMARC</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Security Gateway by MDaemon</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 12:48</td>
+            <td>2022-11-22 12:55</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>custom wrote</td>
+            <td>Other (please specify)</td>
+            <td>none</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 12:29</td>
+            <td>2022-11-22 12:33</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>OpenSMTPd</td>
+            <td></td>
+            <td></td>
+            <td>50 ~ 100</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>14/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:46</td>
+            <td>2022-11-22 11:49</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>&lt; 10</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>02/11/2022</td>
+            <td>SPF</td>
+            <td></td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:34</td>
+            <td>2022-11-22 11:34</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:25</td>
+            <td>2022-11-22 11:27</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>22/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:27</td>
+            <td>2022-11-22 11:27</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:18</td>
+            <td>2022-11-22 11:25</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>ispconfig &quot;control panel&quot; but bulk of config is legacy from pre-ispconfig stand-alone mail
+                serving
+            </td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>unknown</td>
+            <td>unknown</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:18</td>
+            <td>2022-11-22 11:21</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>100 ~ 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>OpenDMARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 11:18</td>
+            <td>2022-11-22 11:20</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exchange</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>none</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>16/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Third-party</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 10:31</td>
+            <td>2022-11-22 10:38</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Sendmail</td>
+            <td></td>
+            <td>Plesk</td>
+            <td></td>
+            <td>100 ~ 500</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>OpenDMARC</td>
+            <td></td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Security Gateway by MDaemon</td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 09:52</td>
+            <td>2022-11-22 10:34</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>manual configuration</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>01/09/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>OpenDMARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Don&#39;t Know</td>
+            <td>don&#39;t know</td>
+            <td>don&#39;t know</td>
+            <td>No</td>
+            <td>Own</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 10:34</td>
+            <td>2022-11-22 10:34</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 10:22</td>
+            <td>2022-11-22 10:25</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>50 ~ 100</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>25/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 10:03</td>
+            <td>2022-11-22 10:03</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 09:59</td>
+            <td>2022-11-22 09:59</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 09:58</td>
+            <td>2022-11-22 09:59</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 09:58</td>
+            <td>2022-11-22 09:58</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 09:50</td>
+            <td>2022-11-22 09:54</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>SmarterTools, SmarterMail</td>
+            <td></td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>21/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 08:26</td>
+            <td>2022-11-22 08:26</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 04:27</td>
+            <td>2022-11-22 04:31</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>None</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>20/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>3</td>
+            <td>unlimited</td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>custom script</td>
+            <td>Yes</td>
+            <td>unlimited</td>
+        </tr>
+        <tr>
+            <td>2022-11-22 04:26</td>
+            <td>2022-11-22 04:30</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>Puppet + Ansible</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>18/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td>BIMI</td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>internal tool</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 03:45</td>
+            <td>2022-11-22 04:10</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Courier-MTA</td>
+            <td>Other (please specify)</td>
+            <td>home-brewed scripts</td>
+            <td>10 ~ 50</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>08/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>zdkimfilter</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Any (never found more than 3)</td>
+            <td>0</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 03:46</td>
+            <td>2022-11-22 03:58</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>(ISP) Mail Server Howto</td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>16/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td>BIMI</td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>1</td>
+            <td>1</td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>Other (please specify)</td>
+            <td>own</td>
+            <td>Yes</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2022-11-22 03:37</td>
+            <td>2022-11-22 03:41</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>self-developed solution</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>14/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 02:08</td>
+            <td>2022-11-22 02:11</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exchange</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>15/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-22 01:40</td>
+            <td>2022-11-22 01:43</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Mailcow</td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 23:35</td>
+            <td>2022-11-21 23:41</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>saltstack</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>13/07/2021</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td>IP + hostname denylist / allowlist</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 22:09</td>
+            <td>2022-11-21 22:10</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 20:49</td>
+            <td>2022-11-21 20:51</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>&lt; 10</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 17:51</td>
+            <td>2022-11-21 18:00</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Surgemail</td>
+            <td>Other (please specify)</td>
+            <td>None</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>22/11/2021</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 17:28</td>
+            <td>2022-11-21 17:34</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>None</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 17:28</td>
+            <td>2022-11-21 17:33</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>01/06/2021</td>
+            <td>SPF</td>
+            <td></td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 17:26</td>
+            <td>2022-11-21 17:30</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>none</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Always</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 16:56</td>
+            <td>2022-11-21 16:57</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 16:32</td>
+            <td>2022-11-21 16:50</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>by my own</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>10/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>No</td>
+            <td>Don&#39;t Know</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 15:48</td>
+            <td>2022-11-21 15:51</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>No</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 15:31</td>
+            <td>2022-11-21 15:39</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>21/11/2022</td>
+            <td>SPF</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 15:11</td>
+            <td>2022-11-21 15:13</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:27</td>
+            <td>2022-11-21 15:09</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>(ISP) Mail Server Howto</td>
+            <td></td>
+            <td>10 ~ 50</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:55</td>
+            <td>2022-11-21 15:05</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>It&#39;s a gigantic cloud service that uses Postfix internally but a lot of custom software as well.
+            </td>
+            <td>Other (please specify)</td>
+            <td>Tens of millions</td>
+            <td>Other (please specify)</td>
+            <td>&gt;100M</td>
+            <td>Always</td>
+            <td>21/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td>ARC</td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:47</td>
+            <td>2022-11-21 14:51</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>10 ~ 50</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Often</td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:36</td>
+            <td>2022-11-21 14:44</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>mix of docs &amp; mailing list/IRC asks and various other sources</td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Yes</td>
+            <td>?</td>
+            <td>0</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:15</td>
+            <td>2022-11-21 14:30</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Hurricane MTA</td>
+            <td>Other (please specify)</td>
+            <td>None</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Always</td>
+            <td>15/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:29</td>
+            <td>2022-11-21 14:29</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:13</td>
+            <td>2022-11-21 14:21</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Exim</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>01/07/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:15</td>
+            <td>2022-11-21 14:16</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:11</td>
+            <td>2022-11-21 14:12</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 14:06</td>
+            <td>2022-11-21 14:07</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:51</td>
+            <td>2022-11-21 12:44</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Mailcow</td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>26/10/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:34</td>
+            <td>2022-11-21 12:31</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>none</td>
+            <td>50 ~ 100</td>
+            <td></td>
+            <td>101 ~ 1000</td>
+            <td></td>
+            <td>Sometimes</td>
+            <td>01/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:38</td>
+            <td>2022-11-21 11:48</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Mailcow</td>
+            <td></td>
+            <td>10 ~ 50</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Always</td>
+            <td>14/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:39</td>
+            <td>2022-11-21 11:45</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>&lt;10</td>
+            <td></td>
+            <td>10 ~ 100</td>
+            <td></td>
+            <td>Often</td>
+            <td>15/08/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:42</td>
+            <td>2022-11-21 11:43</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:34</td>
+            <td>2022-11-21 11:40</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>None</td>
+            <td>&gt; 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td>Often</td>
+            <td>18/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:33</td>
+            <td>2022-11-21 11:39</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Postfix</td>
+            <td></td>
+            <td>Other (please specify)</td>
+            <td>postfixadmin</td>
+            <td>Other (please specify)</td>
+            <td>5000</td>
+            <td>Other (please specify)</td>
+            <td>100</td>
+            <td>Always</td>
+            <td>21/11/2022</td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td>MTA-STS</td>
+            <td>DANE</td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Own</td>
+            <td>RSpamd</td>
+            <td></td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>Don&#39;t Know</td>
+            <td>default</td>
+            <td>default</td>
+            <td>No</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2022-11-21 11:35</td>
+            <td>2022-11-21 11:37</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Other (please specify)</td>
+            <td>Microsoft 365</td>
+            <td></td>
+            <td></td>
+            <td>100 ~ 500</td>
+            <td></td>
+            <td>&gt; 1000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>SPF</td>
+            <td>DKIM</td>
+            <td>DMARC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>STARTTLS</td>
+            <td></td>
+            <td></td>
+            <td>Yes</td>
+            <td>Third-party</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<noscript>
+    <div class="alert alert-warning" role="alert">
+        <strong>JavaScript disabled!</strong> This page requires JavaScript, you might not be able to access all content
+        with JavaScript disabled.
+    </div>
+</noscript>
+
+<footer class="container-fluid page-footer" style="display: flex; align-items: center">
+</footer>
+
+
+<script type="text/javascript">
+    var sc_project = 11603023;
+    var sc_invisible = 1;
+    var sc_security = "a906280a";
+    var scJsHost = (("https:" == document.location.protocol) ?
+        "https://secure." : "http://www.");
+    document.write("<sc" + "ript type='text/javascript' src='" +
+        scJsHost +
+        "statcounter.com/counter/counter.js'></" + "script>");
+</script>
+<noscript>
+    <div class="statcounter"><a title="Web Analytics"
+                                href="http://statcounter.com/" target="_blank"><img
+            class="statcounter"
+            src="//c.statcounter.com/11603023/0/a906280a/1/" alt="Web
+Analytics"></a></div>
+</noscript>
+
+
+<script src="js/jquery.1.12.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
