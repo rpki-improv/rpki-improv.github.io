@@ -57,7 +57,7 @@ def create_mapping(identifier, d):
 
 def read_hashes():
     hashes = json.load(open(base_path + 'hashed-scanned-mtas.json'))
-    print(len(hashes), hashes[0:5])
+    # print(len(hashes), hashes[0:5])
     return hashes
 
 
@@ -117,16 +117,8 @@ if __name__ == "__main__":
         if ind % 100000 == 0:
             print('Creating mapping. ' + str(len(bind2mx2)/886825) + '% done. Please wait...')
         create_mapping(i, bind2mx2)
-    print('# of keys in mapping', len(bind2mx1) + len(bind2mx2))
+    # print('# of keys in mapping', len(bind2mx1) + len(bind2mx2))
     read_logs()
-    with open('dns_lookup_count_scanning_rebuttal.txt', 'w') as fout:
-        temp = {}
-        for key in total_unique_cnt_expt1:
-            temp[key] = max(total_cnt_expt1[key], total_cnt_expt2[key])
-        for key in total_unique_cnt_expt2:
-            temp[key] = max(total_cnt_expt1[key], total_cnt_expt2[key])
-        for key in temp:
-            fout.write(key + ' ' + str(temp[key]) + ' ' + str(void_cnt[key]) + '\n')
     print('No. of servers that queried: ', len(temp))
     for key in query_set_expt1:
         are_log_line_indicators_present[key] = True if is_missing_log_indicator.issubset(
@@ -144,7 +136,7 @@ if __name__ == "__main__":
                     total_unique_cnt_expt2[key] >= 51 or (
                     (are_log_line_indicators_present[key] and total_unique_cnt_expt2[key] >= 45))])
     x1 = x1.union(x1_prime)
-    print(len(x1), len(x1_prime), len(x1.intersection(x1_prime)))
+    # print(len(x1), len(x1_prime), len(x1.intersection(x1_prime)))
     # Finding potential servers with more than 51 queries
     y1 = set([(key, total_cnt_expt1[key]) for key in total_cnt_expt1 if total_cnt_expt1[key] >= 51 or (
                 are_log_line_indicators_present[key] and total_unique_cnt_expt1[key] >= 45)])
