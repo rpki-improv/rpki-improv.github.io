@@ -154,6 +154,8 @@ if __name__ == "__main__":
     print('# of potentially vulnerable servers with no void lookup limit', len(x2))
     common_potentially_vulnerable_servers = set([i[0] for i in x1]).intersection(set([i[0] for i in x2]))
     print('# of potentially vulnerable servers common in both experiments', len(common_potentially_vulnerable_servers))
+    servers_violating_void_lookup_but_has_total_lookup = set([i[0] for i in x2]).intersection(set([i[0] for i in x1]))
+    print('# of potentially vulnerable servers with no void lookup limit but with a total lookup limit', len(servers_violating_void_lookup_but_has_total_lookup))
     print('end, press ctrl-c to quit')
 
 
