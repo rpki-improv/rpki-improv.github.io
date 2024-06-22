@@ -35,8 +35,8 @@ def process_query(query):
         format = '%d-%b-%Y'
         datetime_obj = datetime.datetime.strptime(date, format)
         # print(datetime_obj)
-        if datetime_obj >= datetime.datetime.strptime("2024-04-11 00:00:00", "%Y-%m-%d %H:%M:%S"):
-            return
+        # if datetime_obj >= datetime.datetime.strptime("2024-04-11 00:00:00", "%Y-%m-%d %H:%M:%S"):
+        #     return
         client_ip = chopped[3].split("#")[0]
         rr_type = chopped[7]
         qname = chopped[5]
