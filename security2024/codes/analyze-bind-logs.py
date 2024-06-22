@@ -111,15 +111,15 @@ if __name__ == "__main__":
         int), defaultdict(set), defaultdict(int), defaultdict(int)
     for ind, i in enumerate(hashes[:1000000]):
         if ind % 100000 == 0:
-            print('Creating mapping. ' + str(len(bind2mx1)/1000000) + '% done. Please wait...')
+            print('Creating mapping. ' + str(len(bind2mx1)/1886825) + '% done. Please wait...')
         create_mapping(i, bind2mx1)
     for ind, i in enumerate(hashes[1000000:]):
         if ind % 100000 == 0:
-            print('Creating mapping. ' + str(len(bind2mx2)/886825) + '% done. Please wait...')
+            print('Creating mapping. ' + str(50 + len(bind2mx2)/1886825) + '% done. Please wait...')
         create_mapping(i, bind2mx2)
     # print('# of keys in mapping', len(bind2mx1) + len(bind2mx2))
     read_logs()
-    print('No. of servers that queried: ', len(set(total_unique_cnt_expt1.keys()).intersection(set(total_unique_cnt_expt2.keys()))))
+    print('No. of servers that queried: ', len(total_unique_cnt_expt1))
     for key in query_set_expt1:
         are_log_line_indicators_present[key] = True if is_missing_log_indicator.issubset(
             query_set_expt1[key]) else False
@@ -154,8 +154,6 @@ if __name__ == "__main__":
     print('# of potentially vulnerable servers with no void lookup limit', len(x2))
     common_potentially_vulnerable_servers = set([i[0] for i in x1]).intersection(set([i[0] for i in x2]))
     print('# of potentially vulnerable servers common in both experiments', len(common_potentially_vulnerable_servers))
-    servers_violating_void_lookup_but_has_total_lookup = set([i[0] for i in x2]).intersection(set([i[0] for i in x1]))
-    print('# of potentially vulnerable servers with no void lookup limit but with a total lookup limit', len(servers_violating_void_lookup_but_has_total_lookup))
     print('end, press ctrl-c to quit')
 
 
