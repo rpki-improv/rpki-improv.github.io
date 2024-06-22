@@ -57,7 +57,7 @@
 
 <main class="container-fluid">
     <h1 id="how-to-reproduce-the-figures-on-the-paper-section-3">How to reproduce the results (Section 5.2) on the
-        paper? (Section 5)?</h1>
+        paper?</h1>
     <p>We wanted to measure the current state of SPF validation by SMTP servers in the wild with respect to lookup
         limits. In our experiment, we focus on the DNS lookup limits specified in the standard; namely:
         (1) total DNS lookup and (2) void lookup. Please
@@ -65,88 +65,80 @@
     </p>
     <ul>
         <li>
-            <p>For this experiment, there are two datasets ; 1) list of scanned recipient MTAs along with their domains and associated mapping
-                2) corresponding DNS logs made by the MTAs due to our scanning. One approach to evaluate the consistency
-                of our paper can be: (1) download our datasets, (2)
-                run our analysis scripts (you have to update paths accordingly), and (3) run our plotting scripts. <em>For the
-                    ones who are interested in this approach, you can start this page from
-                    Section 2 and then follow Section 1.</em></p>
-        </li>
-        <li>
-            <p>Another approach is, you can (1) just use our analytics datasets, which are processed through our analysis codes
-                based on the datasets. We believe this way to be the fastest way that you can check the consistency
-                of the figures on the paper. <em>For the ones who are interested in this approach, you only need to read
-                    Section 1.</em></p>
+            <p>For this experiment, there are two datasets ; 1) hashed value of the scanned recipient MTAs,
+                2) corresponding DNS logs made by the MTAs due to our scanning. To evaluate the consistency
+                of our paper, one should: (1) download our datasets, (2)
+                run our analysis scripts.
         </li>
     </ul>
-    <h1 id="1-reproducing-the-figures-from-the-analytics">1. Reproducing the figures from the analytics</h1>
-    <p>This section introduces a very simple way to reproduce all of the figures in the paper by using the analytics
-        datasets and plotting scripts.</p>
-    <h2 id="datasets-and-scripts">Datasets and scripts</h2>
-    <h3 id="1-analytic-datasets-for-figures-and-their-gnuplot-scripts">(1) Analytic datasets for figures and their
-        gnuplot scripts</h3>
+<!--    <h1 id="1-reproducing-the-figures-from-the-analytics">1. Reproducing the figures from the analytics</h1>-->
+<!--    <p>This section introduces a very simple way to reproduce all of the figures in the paper by using the analytics-->
+<!--        datasets and plotting scripts.</p>-->
+<!--    <h2 id="datasets-and-scripts">Datasets and scripts</h2>-->
+<!--    <h3 id="1-analytic-datasets-for-figures-and-their-gnuplot-scripts">(1) Analytic datasets for figures and their-->
+<!--        gnuplot scripts</h3>-->
 
 
-    <table class="table table-dark table-striped table-bordered">
-        <thead>
-        <tr>
-            <th>Filename</th>
-            <th>Download</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><code>data.zip</code></td>
-            <td><a href="/security2024/data.zip">link</a></td>
-            <td>Input datasets for the figures.</td>
-        </tr>
-        <tr>
-            <td><code>plotting-scripts.zip</code></td>
-            <td><a href="/security2024/plotting_scripts.zip">link</a></td>
-            <td>Plotting scripts for the figures.</td>
-        </tr>
-        </tbody>
-    </table>
+<!--    <table class="table table-dark table-striped table-bordered">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Filename</th>-->
+<!--            <th>Download</th>-->
+<!--            <th>Description</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <td><code>data.zip</code></td>-->
+<!--            <td><a href="/security2024/data.zip">link</a></td>-->
+<!--            <td>Input datasets for the figures.</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><code>plotting-scripts.zip</code></td>-->
+<!--            <td><a href="/security2024/plotting_scripts.zip">link</a></td>-->
+<!--            <td>Plotting scripts for the figures.</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
 
-    <style>
-        table, th, td {
-            text-align: center;
-        }
-    </style>
+<!--    <style>-->
+<!--        table, th, td {-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--    </style>-->
 
-    <h3 id="2-details-of-the-gnuplot-scripts">(2) Details of the gnuplot scripts</h3>
+<!--    <h3 id="2-details-of-the-gnuplot-scripts">(2) Details of the gnuplot scripts</h3>-->
 
 
-    <table class="table table-dark table-striped table-bordered">
-        <thead>
-        <tr>
-            <th>Filename</th>
-            <th>Figure No. on the paper</th>
-            <th>Input data</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><code></code></td>
-            <td>Figure 7</td>
-            <td><code></code></td>
-        </tr>
-        </tbody>
-    </table>
+<!--    <table class="table table-dark table-striped table-bordered">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Filename</th>-->
+<!--            <th>Figure No. on the paper</th>-->
+<!--            <th>Input data</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <td><code></code></td>-->
+<!--            <td>Figure 7</td>-->
+<!--            <td><code></code></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
 
-    <style>
-        table, th, td {
-            text-align: center;
-        }
-    </style>
+<!--    <style>-->
+<!--        table, th, td {-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--    </style>-->
 
-    <h1 id="2-reproducing-the-analytics-from-the-raw-datasets-our-measurement-datasets">2. Reproducing the analytics
+    <h1 id="1-reproducing-the-analytics-from-the-raw-datasets-our-measurement-datasets">Reproducing the analytics
         from the datasets (our measurement and logs)</h1>
     <p>This section introduces a way to generate the data (in the <code>Analytics</code> file) from the measurement and
         DNS logs
         that we had collected using our scanning analysis.
-        After executing the analysis scripts you may use those output files as inputs to the above plotting scripts.</p>
+<!--        After executing the analysis scripts you may use those output files as inputs to the above plotting scripts.</p>-->
     <h2 id="datasets-and-scripts-1">Datasets and scripts</h2>
     <h3 id="1-raw-measurement-datasets-and-prerequisites-for-the-analysis">(1) Datasets and
         prerequisites for the analysis.</h3>
@@ -162,14 +154,14 @@
         </thead>
         <tbody>
         <tr>
-            <td><code>Scanned MTAs and mapping</code></td>
-            <td><a href="https://dmarcstudy-dataset.s3.us-east-2.amazonaws.com/scanned-mtas-with-mapping.txt">link</a></td>
+            <td><code>List of scanned MTAs (hashed)</code></td>
+            <td><a href="https://dmarcstudy-dataset.s3.us-east-2.amazonaws.com/hashed-scanned-mtas.json">link</a></td>
             <td>
             </td>
         </tr>
         <tr>
             <td><code>DNS Logs</code></td>
-            <td><a href="https://dmarcstudy-dataset.s3.us-east-2.amazonaws.com/dns-logs.zip">link</a></td>
+            <td><a href="https://dmarcstudy-dataset.s3.us-east-2.amazonaws.com/bind-logs.zip">link</a></td>
             <td>
             </td>
         </tr>
@@ -195,8 +187,8 @@
         </thead>
         <tbody>
         <tr>
-            <td><code>fig2.py</code></td>
-            <td><a href="/security2024/codes/fig2.py">link</a></td>
+            <td><code>analyze-bind-logs.py</code></td>
+            <td><a href="/security2024/codes/artifact-5-2.py">link</a></td>
             <td>
             </td>
         </tr>
@@ -209,7 +201,21 @@
         }
     </style>
 
-    <h2 id="how-to-use-the-datasets-and-scripts">How to use the datasets and scripts?</h2>
+    <h2 id="how-to-use-the-datasets-and-scripts">How to run the scripts?</h2>
+    <ol>
+        <li>Create a directory named <b>spf-usenix-fall-2024-artifacts</b> anywhere you want.</li>
+        <li>Download the specified json and zip files in this directory.</li>
+        <li>Unzip the bind-logs.zip file within this directory.
+            There should be a bind-logs directory under the base spf-usenix-fall-2024-artifacts.</li>
+        <li>Navigate to the spf-usenix-fall-2024 directory in a terminal.</li>
+        <li>If python3 is installed run <b>python3 artifact-5-2.py</b>.
+            Note that we are using python3.8 for the project but it should be runnable in any version after 3.6.</li>
+        <li>If it does not encounter any error, you should see some outputs in your screen.
+            Read the following section to interpret the outputs and match it with Section 5.2 of our paper.</li>
+    </ol>
+    <p></p>
+
+    <h2 id="how-to-interpret the output">How to interpret the output and match it with Section 5.2?</h2>
     <p></p>
 </main>
 <footer class="container-fluid page-footer" style="display: flex; align-items: center">
