@@ -119,7 +119,7 @@ if __name__ == "__main__":
         create_mapping(i, bind2mx2)
     # print('# of keys in mapping', len(bind2mx1) + len(bind2mx2))
     read_logs()
-    print('No. of servers that queried: ', len(temp))
+    print('No. of servers that queried: ', len(set(total_unique_cnt_expt1.keys()).intersection(set(total_unique_cnt_expt2.keys()))))
     for key in query_set_expt1:
         are_log_line_indicators_present[key] = True if is_missing_log_indicator.issubset(
             query_set_expt1[key]) else False
