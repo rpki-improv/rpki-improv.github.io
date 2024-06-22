@@ -2,6 +2,7 @@ import os
 import sys
 from collections import defaultdict
 import json
+import datetime
 
 
 def process_query(query):
@@ -28,7 +29,14 @@ def process_query(query):
     # print(chopped, len(chopped))
 
     if len(chopped) == 10 or len(chopped) == 12:
-        timestamp = chopped[0] + " " + chopped[1]
+        date = chopped[0]
+        time = chopped[1]
+        timestamp = date + " " + time
+        format = '%d-%b-%Y'
+        datetime_obj = datetime.datetime.strptime(date, format)
+        # print(datetime_obj)
+        if datetime_obj >= datetime.datetime.strptime("2024-04-11 00:00:00", "%Y-%m-%d %H:%M:%S"):
+            return
         client_ip = chopped[3].split("#")[0]
         rr_type = chopped[7]
         qname = chopped[5]
@@ -71,7 +79,11 @@ def read_logs(domain='dmarcanalysis.net'):
             lines = open(path).readlines()
             for line in lines:
                 a += 1
-                timestamp, qname, rr_type, client_ip, flags = process_query(line)
+                result = process_query(line)
+                if not result:
+                    continue
+                if result:
+                    timestamp, qname, rr_type, client_ip, flags = result
                 # print(timestamp, qname, rr_type, client_ip)
                 if rr_type == 'TXT' and domain in qname.lower():
                     b += 1
