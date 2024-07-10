@@ -109,6 +109,27 @@ def read_logs(domain='dmarcanalysis.net'):
     print('no. of lines in log', a, 'no. of TXT query rows', b, 'no. of TXT query rows in mapping', c)
 
 
+def create_cdf_file(array, how, fp):
+    '''
+        how: if total, cdf will be made using total sum of the list; for example: [0, 1, 1, 2, 3] -> [0, 2/7, 4/7, 1]
+        if freq, cdf will be made using freq sum of the list: for example: [0, 0, 1, 1, 2, 3] -> [0 -> (2/6), 1 -> (4/6), 2 -> (5/6), ...]
+    '''
+    array = sorted(array)
+    total = sum(array) if how == 'total' else len(array)
+    print(total)
+    cum = 0
+    with open(fp, 'w') as f:
+        for ind, i in enumerate(array):
+            cum += i if how == 'total' else 1
+            # print(i, cum)
+            if ind < len(array) - 1  and i != array[ind+1]:
+                f.write(str(i) + ' ' + str(cum/total))
+                f.write('\n')
+            elif ind == len(array) - 1:
+                f.write(str(i) + ' ' + str(cum/total))
+                f.write('\n')
+
+
 if __name__ == "__main__":
     base_path = ''
     log_path = base_path + 'bind-logs/'
@@ -131,6 +152,14 @@ if __name__ == "__main__":
         create_mapping(i, bind2mx2)
     # print('# of keys in mapping', len(bind2mx1) + len(bind2mx2))
     read_logs()
+    with open('temp/dns-lookup-count-scanning.txt', 'w') as fout:
+        temp = {}
+        for key in total_unique_cnt_expt1:
+            temp[key] = max(total_cnt_expt1[key], total_cnt_expt2[key])
+        for key in total_unique_cnt_expt2:
+            temp[key] = max(total_cnt_expt1[key], total_cnt_expt2[key])
+        for key in temp:
+            fout.write(key + ' ' + str(temp[key]) + ' ' + str(void_cnt[key]) + '\n')
     print('No. of servers that queried: ', len(total_unique_cnt_expt1))
     for key in query_set_expt1:
         are_log_line_indicators_present[key] = True if is_missing_log_indicator.issubset(
@@ -166,6 +195,16 @@ if __name__ == "__main__":
     print('# of potentially vulnerable servers with no void lookup limit', len(x2))
     common_potentially_vulnerable_servers = set([i[0] for i in x1]).intersection(set([i[0] for i in x2]))
     print('# of potentially vulnerable servers common in both experiments', len(common_potentially_vulnerable_servers))
+
+    with open('temp/dns_lookup_count_scanning_rebuttal.txt') as fin:
+        lines = fin.readlines()
+        test1 = []
+        test2 = []
+        for line in lines:
+            x, y, z = line.split()
+            test1.append(int(y))
+            test2.append(int(z))
+    create_cdf_file(test1, 'freq', 'temp/vuln-scan-test1.txt')
+    create_cdf_file(test2, 'freq', 'temp/vuln-scan-test2.txt')
+
     print('end, press ctrl-c to quit')
-
-
