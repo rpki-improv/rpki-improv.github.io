@@ -56,7 +56,162 @@
 <script src="js/script.js"></script>
 
 <main class="container-fluid">
-    Will be published soon.
+<h1 id="how-to-reproduce-the-figures-on-the-paper-section-3">How to reproduce Tables and Figures (Section 3 and 4) on the
+        paper? Note that due to storage issues, we can not provide our longitudinal data but they are available upon request.</h1>
+    <p>
+    </p>
+    <ul>
+        <li>
+            <p></p>
+        </li>
+    </ul>
+    <!--    <h1 id="1-reproducing-the-figures-from-the-analytics">1. Reproducing the figures from the analytics</h1>-->
+    <!--    <p>This section introduces a very simple way to reproduce all of the figures in the paper by using the analytics-->
+    <!--        datasets and plotting scripts.</p>-->
+    <!--    <h2 id="datasets-and-scripts">Datasets and scripts</h2>-->
+    <!--    <h3 id="1-analytic-datasets-for-figures-and-their-gnuplot-scripts">(1) Analytic datasets for figures and their-->
+    <!--        gnuplot scripts</h3>-->
+
+
+    <!--    <table class="table table-dark table-striped table-bordered">-->
+    <!--        <thead>-->
+    <!--        <tr>-->
+    <!--            <th>Filename</th>-->
+    <!--            <th>Download</th>-->
+    <!--            <th>Description</th>-->
+    <!--        </tr>-->
+    <!--        </thead>-->
+    <!--        <tbody>-->
+    <!--        <tr>-->
+    <!--            <td><code>data.zip</code></td>-->
+    <!--            <td><a href="/security2024/data.zip">link</a></td>-->
+    <!--            <td>Input datasets for the figures.</td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td><code>plotting-scripts.zip</code></td>-->
+    <!--            <td><a href="/security2024/plotting_scripts.zip">link</a></td>-->
+    <!--            <td>Plotting scripts for the figures.</td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
+
+    <!--    <style>-->
+    <!--        table, th, td {-->
+    <!--            text-align: center;-->
+    <!--        }-->
+    <!--    </style>-->
+
+    <!--    <h3 id="2-details-of-the-gnuplot-scripts">(2) Details of the gnuplot scripts</h3>-->
+
+
+    <!--    <table class="table table-dark table-striped table-bordered">-->
+    <!--        <thead>-->
+    <!--        <tr>-->
+    <!--            <th>Filename</th>-->
+    <!--            <th>Figure No. on the paper</th>-->
+    <!--            <th>Input data</th>-->
+    <!--        </tr>-->
+    <!--        </thead>-->
+    <!--        <tbody>-->
+    <!--        <tr>-->
+    <!--            <td><code></code></td>-->
+    <!--            <td>Figure 7</td>-->
+    <!--            <td><code></code></td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
+
+    <!--    <style>-->
+    <!--        table, th, td {-->
+    <!--            text-align: center;-->
+    <!--        }-->
+    <!--    </style>-->
+
+    <h1 id="1-reproducing-the-analytics-from-the-raw-datasets-our-measurement-datasets">Reproducing the analytics
+        from the datasets</h1>
+    <p>This section introduces a way to verify the results produced via our Internet wide measurement.
+    <h2 id="datasets-and-scripts-1">Datasets and scripts</h2>
+    <h3 id="1-raw-measurement-datasets-and-prerequisites-for-the-analysis">(1) Datasets and
+        prerequisites for the analysis.</h3>
+
+
+    <table class="table table-dark table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Download</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <style>
+        table, th, td {
+            text-align: center;
+        }
+    </style>
+
+    <h3 id="2-scripts-for-the-analysis">(2) Scripts for the analysis</h3>
+
+
+    <table class="table table-dark table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Download</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>generate-table1-table2-data.py</code></td>
+            <td><a href="/security2024/codes/generate-table1-table2-data.py">link</a></td>
+            <td>This script is for reproducing table 1 and table 2</td>
+        </tr>
+        <tr>
+            <td><code>generate-table3-fig3-data.py</code></td>
+            <td><a href="/security2024/codes/generate-table3-fig3-data.py">link</a></td>
+            <td>This script is for reproducing the data for fig 3 and table 3</td>
+        </tr>
+        <tr>
+            <td><code>generate-fig4-data.py</code></td>
+            <td><a href="/security2024/codes/generate-fig4-data.py">link</a></td>
+            <td>This script is for reproducing the data for fig 4</td>
+        </tr>
+        <tr>
+            <td><code>generate-fig7-data.py</code></td>
+            <td><a href="/security2024/codes/generate-fig7-data.py">link</a></td>
+            <td>This script is for reproducing the data for fig 7</td>
+        </tr>
+        <tr>
+            <code>plotting-scripts.zip</code>
+            <td><a href="/security2024/codes/plotting-scripts.zip">link</a></td>
+            <td>These are plotting scripts for reproducing Fig. 3, 4, 7</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <style>
+        table, th, td {
+            text-align: center;
+        }
+    </style>
+
+    <h2 id="how-to-use-the-datasets-and-scripts">How to run the scripts?</h2>
+    <p>
+    <ol>
+    <li>Requirements: We use PySpark for big data analysis, python3 for scripting, and gnuplot for plotting scripts from data.
+    </li>
+    <li>For reproducing Table 1 and 2, run <i>spark-submit generate-table1-table2-data.py</i>. Match the outputs with table 1 and table 2 data.</li>
+    <li>For reproducing Table 3 and generating temporary data needed to plot Figure 3, run <i>spark-submit generate-table3-fig3-data.py</i>. Match the outputs with table 3 data.</li>
+    <li>For producing temporary data needed to plot Figure 4, run <i>python3 generate-fig4-data.py</i></li>
+    <li>For producing temporary data needed to plot Figure 7, run <i>python3 generate-fig7-data.py</i></li>
+    <li>Unzip plotting-scripts.zip and use gnuplot to plot the figures</li>
+    </ol>
+    </p>
 </main>
 <footer class="container-fluid page-footer" style="display: flex; align-items: center">
 </footer>
