@@ -9,7 +9,6 @@ from datetime import datetime
 
 zones = ['com', 'net', 'org', 'se']
 
-
 class DictParam(AccumulatorParam):
     def zero(self, value):
         return value
@@ -133,26 +132,6 @@ def process_after_join(v):
         pass
 
 
-def find_out_closest_date(dt):
-    min_diff = 1e8
-    for mx_dt in os.listdir(base_path_mx):
-        try:
-            if os.path.exists(base_path_mx + mx_dt + '/dns.zip') and \
-            'test' not in mx_dt and \
-            'test' not in dt:
-                # convert string to date object
-                d1 = datetime.strptime(mx_dt, "%Y-%m-%d")
-                d2 = datetime.strptime(dt, "%Y-%m-%d")
-                diff = abs((d2 - d1).days)
-                if diff < min_diff:
-                    min_dt = mx_dt
-                    min_diff = diff
-        except Exception as e:
-            traceback.print_exc()
-            continue
-    return min_dt
-
-
 def extract_mx(v):
     try:
         v = json.loads(v)
@@ -188,19 +167,13 @@ def get_snapshot_data():
     f = open('temp/spf-data-per-mech.txt')
     lines = f.readlines()
     first_snapshot = lines[0].split()
-    second_last_snapshot = lines[1].split()
-    last_snapshot = lines[2].split()
-    for i in range(5, len(second_last_snapshot)):  # correcting for .se zone data in the last snapshot
-        last_snapshot[i] = second_last_snapshot[i]
-    f.close()
+    last_snapshot = lines[1].split()
     return first_snapshot, last_snapshot
 
 
 def get_longitudinal_deployment():
     global deployment, total, external_include, mech_a, mech_mx, mech_inc, mech_red, mech_exists, mech_ptr, mech_ip4, mech_ip6, mech_all, mech_exp
-    for dt in ["2021-10-13", '2023-03-19', '2023-03-27']:
-        # if dt == "2021-10-13" or dt == '2023-03-27':  # only first and last snapshot
-        #     continue
+    for fn in [spf_first_snapshot, spf_last_snapshot]:
         try:
             total = sc.accumulator(defaultdict(int), DictParam())
             deployment = sc.accumulator(defaultdict(int), DictParam())
@@ -215,12 +188,16 @@ def get_longitudinal_deployment():
                 sc.accumulator(defaultdict(int), DictParam())
             external_include = sc.accumulator(defaultdict(int), DictParam())
 
-            rdd_spf = sc.textFile(email_auth_hdfs_path + dt + '/SPF').map(extract_spf).filter(lambda v: v is not None)
+            rdd_spf = sc.textFile(fn).map(extract_spf).filter(lambda v: v is not None)
 
-            mx_dt = find_out_closest_date(dt)
-            # print(mx_dt)
+            if fn == spf_first_snapshot:
+                mx_fn = mx_first_snapshot
+                dt = '2021-10-13'
+            else:
+                mx_fn = mx_last_snapshot
+                dt = '2023-03-19'
 
-            rdd_mx = sc.textFile(mx_hdfs_path + mx_dt + '/' + 'dns/').map(extract_mx).filter(lambda v: v is not None)
+            rdd_mx = sc.textFile(mx_fn + 'dns/').map(extract_mx).filter(lambda v: v is not None)
 
             rdd = rdd_mx.join(rdd_spf)
 
@@ -264,7 +241,7 @@ def calc_pct_change(tld):
     f = open('temp/spf-data-per-mech.txt')
     lines = f.readlines()
     first_snapshot = lines[0].split()
-    last_snapshot = lines[2].split()
+    last_snapshot = lines[1].split()
     if tld == 'com':
         var, tot = 10, 6
     elif tld == 'net':
@@ -306,10 +283,10 @@ if __name__ == "__main__":
     sc = SparkContext(conf=conf)
     sc.setLogLevel("ERROR")
 
-    base_path = '/net/data/email-sender-auth/'
-    base_path_mx = '/net/data/mta-sts/'
-    mx_hdfs_path = 'hdfs:///user/ashiq/mta-sts-management/dns-records-by-date/'
-    email_auth_hdfs_path = 'hdfs:///user/ashiq/email-sender-auth-management/dns-records-by-date/'
+    spf_first_snapshot = 'spf-2021-10-13'
+    spf_last_snapshot = 'spf-2023-03-19'
+    mx_first_snapshot = 'mx-2021-10-13'
+    mx_last_snapshot = 'mx-2023-03-19'
 
     total = sc.accumulator(defaultdict(int), DictParam())
     deployment = sc.accumulator(defaultdict(int), DictParam())
